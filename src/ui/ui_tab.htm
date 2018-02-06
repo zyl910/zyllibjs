@@ -1,7 +1,7 @@
-<!doctype html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>ui_tab</title>
 <style type="text/css">
 body {
@@ -28,6 +28,9 @@ body {
 	line-height:50px;
 	text-align:center;
 }
+#tab-nav li{
+	*display:inline; /* IE6~7 */
+}
 #tab-nav li a{
 	display:block;
 	color:#FFF;
@@ -44,24 +47,24 @@ body {
 </head>
 
 <body>
-<section id="tab-container">
+<div id="tab-container">
 <ul id="tab-nav">
   <li><a href="#weather" id="nav-weather">Weather</a></li>
   <li><a href="#sport" id="nav-sport">Sport</a></li>
   <li><a href="#travel" id="nav-travel">Travel</a></li>
 </ul>
 <div id="tab-content">
-  <article id="weather">
+  <div id="weather">
     <p>Weather is the state of the atmosphere, to the degree that it is hot or cold, wet or dry, calm or stormy, clear or cloudy. Weather, seen from an anthropological perspective, is something all humans in the world constantly experience through their senses, at least while being outside. There are socially and scientifically constructed understandings of what weather is, what makes it change, the effect it has on humans in different situations, etc. Therefore, weather is something people often communicate about.</p>
-  </article>
-  <article id="sport">
+  </div>
+  <div id="sport">
     <p>Sports are usually governed by a set of rules or customs, which serve to ensure fair competition, and allow consistent adjudication of the winner. Winning can be determined by physical events such as scoring goals or crossing a line first. It can also be determined by judges who are scoring elements of the sporting performance, including objective or subjective measures such as technical performance or artistic impression.</p>
-  </article>
-  <article id="travel">
+  </div>
+  <div id="travel">
     <p>Travel is the movement of people between relatively distant geographical locations, and can involve travel by foot, bicycle, automobile, train, boat, airplane, or other means, with or without luggage, and can be one way or round trip. Travel can also include relatively short stays between successive movements.</p>
-  </article>
+  </div>
 </div>
-</section>
+</div>
 <script type="text/javascript">
 var nav_weather=document.getElementById("nav-weather");
 var nav_sport=document.getElementById("nav-sport");
