@@ -44,9 +44,10 @@ body {
 	background:#FFF;
 }
 </style>
+<script type="text/javascript" src="zl_ui_tab.js"></script>
 </head>
 
-<body>
+<body onload="myinit();">
 <div id="tab-container">
 <ul id="tab-nav">
   <li><a href="#weather" id="nav-weather">Weather</a></li>
@@ -66,6 +67,7 @@ body {
 </div>
 </div>
 <script type="text/javascript">
+var tabDivManager = null;	// Tab管理.
 var nav_weather=document.getElementById("nav-weather");
 var nav_sport=document.getElementById("nav-sport");
 var nav_travel=document.getElementById("nav-travel");
@@ -100,6 +102,15 @@ function hideAll(){ //将所有内容都设置为隐藏，所有链接的样式�
 	nav_sport.className = "";
 	nav_travel.className = "";
 }
+
+function myinit(){
+	//alert("myinit");
+	tabDivManager = new zl.ui.TabDivManager({
+		"idnavs": ["nav-weather","nav-sport","nav-travel"],
+		"idcontents": ["weather","sport","travel"]
+	});
+}
+
 </script>
 </body>
 </html>
