@@ -67,16 +67,39 @@ zl.ui.TabDivManager = function(cfg) {
 		this.m_list = [];
 		if (!!this.idnavs) {
 			for(var i=0; i<this.idnavs.length; ++i) {
-				//
+				var idnav = this.idnavs[i];
+				if (!idnav) continue;
+				var p = {}
+				p.nav = document.getElementById(idnav);
+				p.content = null;
+				var idcontent = null;
+				if (!!this.idcontents && i<this.idcontents.length) {
+					idcontent = this.idcontents[i];
+					p.content = document.getElementById(idcontent);
+				}
+				this.m_list.push(p);
 			}
 		}
 		// event
 		if (!this.noevent) {
+			var athis = this;
+			for(var i=0; i<this.m_list.length; ++i) {
+				var p = this.m_list[i];
+				if (!p) continue;
+				if (!p.nav) continue;
+				(function(){
+					var idx = i; // 解决循环中的闭包变量传递问题, 即再加了一层闭包.
+					p.nav.onclick = function(){
+						athis.selectTo(idx);
+					};
+				})();
+			}
 		}
 		// selectTo
+		this.m_inited = true;
 		this.selectTo(this.selectIndex);
 		// done.
-		this.m_inited = true;
+		rt = true;
 		return rt;
 	};
 	
@@ -88,8 +111,23 @@ zl.ui.TabDivManager = function(cfg) {
 	 */
 	zl.ui.TabDivManager.prototype.selectTo = function(idx) {
 		var rt =false;
-		//
-		this.m_inited = true;
+		if (!this.m_inited) return rt;
+		this.selectIndex = idx;
+		var sActive = this.classActive || "active";
+		var displayShow = "block";
+		var displayHide = "none";
+		for(var i=0; i<this.m_list.length; ++i) {
+			var p = this.m_list[i];
+			if (!p) continue;
+			if (!p.nav) continue;
+			var isactive = (i==idx);
+			p.nav.className = isactive?sActive:"";
+			if (!!p.content) {
+				p.content.style.display = isactive?displayShow:displayHide;
+			}
+		}
+		// done.
+		rt = true;
 		return rt;
 	};
 	
