@@ -12,7 +12,6 @@ body {
 }
 #tab-container{
 	background:#FFF;
-	width:400px;
 	box-shadow:1px 1px 2px rgba(0,0,0,.15);
 }
 #tab-nav{
@@ -23,9 +22,6 @@ body {
 #tab-nav li{
 	display:inline-block;
 	list-style:none;
-	width:100px;
-	height:50px;
-	line-height:50px;
 	text-align:center;
 }
 #tab-nav li{
@@ -34,6 +30,8 @@ body {
 #tab-nav li a{
 	display:block;
 	color:#FFF;
+	padding:10px;
+	line-height: 30px;
 	text-decoration:none;
 }
 #tab-content{
@@ -51,7 +49,7 @@ body {
 <div id="tab-container">
 <ul id="tab-nav">
   <li><a href="#weather" id="nav-weather">Weather</a></li>
-  <li><a href="#sport" id="nav-sport">Sport</a></li>
+  <li><a href="#sport" id="nav-sport">Sport(运动)</a></li>
   <li><a href="#travel" id="nav-travel">Travel</a></li>
 </ul>
 <div id="tab-content">
@@ -69,7 +67,7 @@ body {
 <script type="text/javascript">
 function myinit(){
 	//alert("myinit");
-	tabDivManager = new zl.ui.TabDivManager({
+	var tabDivManager = new zl.ui.TabDivManager({
 		"idnavs": ["nav-weather","nav-sport","nav-travel"],
 		"idcontents": ["weather","sport","travel"]
 	});
