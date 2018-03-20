@@ -18,7 +18,7 @@ var zl = window.zl || {};
 zl.ui = window.zl.ui || {};
 
 
-// == PersonInfo class ==
+// == TabDivManager class ==
 
 /** @class
  * Tab div 的切换管理.
