@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>wmi_monitors</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+/// 枚举监视器.
+function doEnum() {
+	var str = "";
+	try {
+		var locator = new ActiveXObject("WbemScripting.SWbemLocator");
+		var service = locator.ConnectServer(".");
+		var xsq = new Enumerator(service.ExecQuery("select * from Win32_DesktopMonitor"));	// https://msdn.microsoft.com/zh-cn/library/Aa394122
+		var i=0;
+		for (; !xsq.atEnd() ; xsq.moveNext()) {
+			var p = xsq.item();
+			str = str + "index=" + i
+				+ ", Name=" + p.Name
+				+ ", ScreenWidth=" + p.ScreenWidth
+				+ ", ScreenHeight=" + p.ScreenHeight
+				+ "\n"
+			;
+			i++;
+		}
+	} catch(ex) {
+		str = str + "\n" + ex.message;
+	}
+	txtinfo.value = str;
+}
+
+</script>
+<h1>wmi_monitors</h1>
+
+<input type="button" value="枚举监视器" OnClick="doEnum();"  />
+<br/>
+<textarea id="txtinfo" rows="20" style="width:95%"></textarea>
+
+</body>
+</html>
